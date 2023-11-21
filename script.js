@@ -15,13 +15,18 @@ function Book(title, author, pages, isRead) {
   this.isRead = isRead;
 }
 
+Book.prototype.setIsRead = function(){
+  this.isRead = !this.isRead;
+}
+
+const comerRezarAmar = new Book("Comer, rezar, amar", "Rachel McAddmans", 234, false)
+myLibrary.push(comerRezarAmar);
+addBook(comerRezarAmar)
+
 function addBookToLibrary(title, author, pages, isRead) {
   const book = new Book(title, author, pages, isRead)
   myLibrary.push(book);
-
   addBook(book);
-
-
   checkIfEmpty()
 }
 
@@ -36,7 +41,7 @@ function checkIfEmpty() {
 }
 
 function getIndexByTitle(title) {
-  return Object.keys(myLibrary).indexOf(title)
+  return myLibrary.findIndex(element => element.title === title)
 }
 
 function resetTable() {  
@@ -52,16 +57,25 @@ function removeBook(title) {
 }
 
 function addBook(book) {
+
   const elimButton = document.createElement("button")
   elimButton.innerText = "Eliminar";
   elimButton.addEventListener("click", () => {
-
     removeBook(title);
-    console.table(myLibrary)
   })
 
-  const cellWithElimButton = document.createElement("td")
-  cellWithElimButton.appendChild(elimButton);
+  const isReadButton = document.createElement("button")
+  isReadButton.innerText = "Cambiar estatus de leído"
+  isReadButton.addEventListener("click", () =>{
+    myLibrary[getIndexByTitle(book.title)].setIsRead();
+    resetTable();
+  })
+
+  const cellWithButton = document.createElement("td")
+  cellWithButton.appendChild(elimButton);
+  cellWithButton.appendChild(isReadButton);
+
+
 
 
   const newRow = document.createElement("tr");
@@ -72,7 +86,7 @@ function addBook(book) {
     <td>${book.pages}</td>
     <td>${book.isRead ? "Si" : "No"}</td>
   `;
-  newRow.appendChild(cellWithElimButton)
+  newRow.appendChild(cellWithButton)
   bookTable.appendChild(newRow);
 
 
