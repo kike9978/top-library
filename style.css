@@ -1,0 +1,25 @@
+
+table,
+td {
+  border: 1px solid #333;
+}
+
+thead,
+tfoot {
+  background-color: #333;
+  color: #fff;
+}
+
+.hidden{
+display: none;
+}
+
+.add-form {
+  position: fixed;
+  margin-inline: auto;
+  padding: 2rem;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
