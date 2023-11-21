@@ -3,6 +3,7 @@ const addForm = document.querySelector(".add-form");
 const saveBtn = document.querySelector('[data-btn="save-book"]');
 const bookTable = document.querySelector(".book-table tbody");
 const emptyMessage = document.querySelector(".emptyMessage");
+const addBookDialog = document.querySelector(".add-book-dialog");
 
 
 let myLibrary = [];
@@ -77,7 +78,7 @@ function addBook(book) {
 
 }
 addBtn.addEventListener("click", () =>
-  addForm.classList.toggle("hidden")
+  addBookDialog.showModal()
 );
 
 addForm.addEventListener("submit", (e) => {
@@ -87,5 +88,5 @@ addForm.addEventListener("submit", (e) => {
   const book = Object.fromEntries(myFormData.entries());
   addBookToLibrary(book.title, book.author, book.pages, book.isRead);
   addForm.reset();
-  addForm.classList.toggle("hidden");
+  addBookDialog.close();
 });

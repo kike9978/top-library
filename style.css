@@ -14,12 +14,7 @@ tfoot {
 display: none;
 }
 
+
 .add-form {
-  position: fixed;
-  margin-inline: auto;
   padding: 2rem;
-  background-color: white;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
 }
